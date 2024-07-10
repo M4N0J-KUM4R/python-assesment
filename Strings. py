@@ -1,0 +1,84 @@
+#Different ways creating a string
+
+#a string or a char can be represented by adding inbetween to either ' or " . single or double quotes
+
+name = str('Manoj')
+print(name)
+
+name = str("Manoj")
+print(name)
+
+about = str('''Manoj is kind!!
+Manoj is strong!!             
+Manoj is genious!! ''')
+print(about)
+
+about = str("""Manoj is kind!!
+Manoj is strong!!             
+Manoj is genious!! """)
+print(about)
+
+#Concatenating two strings using + operator
+first_name = 'Manoj'
+last_name = 'Kumar'
+print(f'Hi this is, {str(first_name)+" "+str(last_name)}')
+
+#Finding the length of the string
+name = str('Manoj')
+print(f'the total length of the string {name} is: {len(name)} ')
+
+#Extract a string using Substring
+name = str('Manoj')
+gender = name[0:3]
+print(gender)
+
+#Searching in strings using index()
+
+message = str('Hi this is, Manoj Kumar')
+print(f'The position of the name is: {message.index("Manoj")}')
+
+#Matching a String Against a Regular Expression With matches()
+
+import re
+message = str('Hi this is, Manoj Kumar')
+find = str('Hi')
+print(re.match(find,message))
+
+#Comparing strings
+
+name1 = str('Manoj Kumar')
+name2 = str('Udaya Kumar')
+name = name1
+print(name == name1)
+print(name == name2)
+
+#startsWith(), endsWith() and compareTo()
+
+startsWith(), endsWith() and compareTo()
+name = str('Manoj Kumar')
+print(name.startswith("Man"))
+print(name.endswith("ar"))
+
+#Trimming strings with strip()
+
+name = str('Manoj Kumar')
+print(f'The first name is: {name.strip("Kumar")}')
+
+#Replacing characters in strings with replace()
+
+name = str('Udaya Kumar')
+print(f'The new name is: {name.replace("Udaya","Manoj")}')
+
+#Splitting strings with split()
+
+name = str('Manoj Kumar')
+print(f'The first name is: {name.split(" ")}')
+
+#Converting integer objects to Strings
+a=int(153)
+a_str = str(a) #convert the int to str
+print(a_str, type(a_str))
+
+#Converting to uppercase and lowercase
+name = str('Manoj Kumar')
+print(f'The lowerd name is: {name.lower()}')
