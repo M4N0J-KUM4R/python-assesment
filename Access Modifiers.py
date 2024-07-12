@@ -14,7 +14,7 @@ class Private:
 
 #Create a sub class and try to access the private fields and methods from sub class.   
 
-class subclass(Private):
+class Subclass(Private):
   def see_private(self):
 
     # This will not work because ____var1 and __private_method are "private"
@@ -31,11 +31,10 @@ class subclass(Private):
 py=Private()
 py.main_method()
 
-sub_py=subclass()
+sub_py=Subclass()
 sub_py.see_private()
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 '''
- 
 from any other class in the same package.
 Also, Access the PROTECTED fields and methods from child class located in a different
 package
@@ -55,7 +54,7 @@ class Protected:
     print(self._var2) #Print the fields in main method.
     self._protected_method() #Call the private method in main method.
 
-class subclass(Protected): #If the parent class is removed we cannot access the methods in private
+class Subclass(Protected): #If the parent class is removed we cannot access the methods in private
   def see_Protected(self):
 
     # This will work
@@ -73,7 +72,7 @@ class Sepclass: # Access these fields and methods from any other class
 pr=Protected()
 pr.main_method()
 
-sub_pr=subclass()
+sub_pr=Subclass()
 sub_pr.see_Protected()
 
 sep_pr = Sepclass()
@@ -81,12 +80,12 @@ sep_pr.access_protected(pr)
 
 #Access these fields and methods from any other class in the same package.
 '''
-it can be done my simply importing the class from the same directory which should also contain the class code in the respective file name can be anything,
+Note: it can be done my simply importing the class from the same directory which should also contain the class code in the respective file name can be anything,
 aslo the directory should also contain __init__.py and the class can be called to the new file with the below line of code.'''
 
 from protected_class import Protected #in this case my protected class file name is saved as protected_class.py
 
-class otherclass:
+class Otherclass:
     def __init__(self):
         self.access = Protected()
 
@@ -97,11 +96,65 @@ class otherclass:
     def access_main_method(self):
         self.access.main_method()
         
-otr_pr = otherclass()
+otr_pr = Otherclass()
 otr_pr.access_protected()
 otr_pr.access_main_method()
 
-#I am skipping this for later
+'''
+Note: it can be done my simply importing the class from the different directory which should also contain the class code in the respective file name can be anything,
+aslo the directory should also contain __init__.py and the class can be called to the new file with the below line of code.'''
+from protecteds.protected_class import Protected #in this case my protected class file name is saved as protected_class.py in a directory named protecteds
+
 '''Also, Access the PROTECTED fields and methods from child class located in a different
 package
 Access the PROTECTED fields and methods from any class in different package'''
+
+class Differentclass:
+    def __init__(self):
+        self.access = Protected()
+
+    def access_protected(self):
+        print(self.access._var2)
+        self.access._protected_method()
+
+    def access_main_method(self):
+        self.access.main_method()
+        
+diff_pr = Differentclass()
+diff_pr.access_protected()
+diff_pr.access_main_method()
+----------------------------------------------------------------------------------------------------------------------------------------------------
+#Create a class with PUBLIC fields and methods.
+
+class Public:
+    def __init__(self):
+        self.var3: str = 'This is a public variable'
+    
+    def public_method(self):
+        print('This is a public method')
+
+from public_class import Public #in this case my public class file name is saved as public_class.py
+
+class Otherclass: #Access the public methods and fields from any class in the same package
+    def __init__(self):
+        self.access = Public()
+
+    def access_public(self):
+        print(self.access.var3) 
+        self.access.public_method()
+
+otr_pb = Otherclass() 
+otr_pb.access_public()
+
+from publics.public_class import Public #in this case my public class file name is saved as public_class.py in a directory named publics
+
+class Differentclass: #Access the public methods and fields from any class in the different package
+    def __init__(self):
+        self.access = Public()
+
+    def access_public(self):
+        print(self.access.var3) 
+        self.access.public_method()
+
+diff_pb = Differentclass()
+diff_pb.access_public()
